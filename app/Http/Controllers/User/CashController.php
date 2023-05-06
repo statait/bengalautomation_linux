@@ -28,8 +28,8 @@ class CashController extends Controller
 			$discount_percentage = Session::get('coupon')['coupon_discount'];
     		$total_amount = Session::get('coupon')['total_amount'];
     	}else{
-			
-			$total_amount =  (string)(Cart::total());
+			// $total_amount =  (string)(Cart::total());
+			$total_amount =  (string)( $request->grandTotal);
     	}
 
 		if ($coupon != NULL) {
@@ -56,7 +56,7 @@ class CashController extends Controller
      	'user_id' => Auth::id(),
      	'division_id' => $request->division_id,
      	'district_id' => $request->district_id,
-     	'state_id' => $request->state_id,
+     	'state_id' => $request->grandTotal,
      	'name' => $request->name,
      	'email' => $request->email,
      	'phone' => $request->phone,

@@ -54,7 +54,7 @@ My Checkout
 						<h3>Shipping Details</h3>
 
 						<div class="col-md-12 form-group p_star">
-							<select name="division_id" class="division_id country_select" required="" >
+							<select name="division_id" id="deli" class="division_id country_select" required="" >
 								<option value="" selected="" disabled="">Select Division</option>
 								@foreach($divisions as $item)
 									 <option value="{{ $item->id }}">{{ $item->division_name }}</option>	
@@ -118,13 +118,17 @@ My Checkout
 					<ul class="list list_2">
 						@if(Session::has('coupon'))
 						<li><a href="#">Subtotal <span>TK {{ $cartTotal }}</span></a></li>
+						<li><a href="#">Delivery Charge <span id="delivery-charge">TK 0</span></a></li>
 						<li><a href="#">Coupon Name <span>{{ session()->get('coupon')['coupon_name'] }}
 							({{ session()->get('coupon')['coupon_discount'] }}% )</span></a></li>
 						<li><a href="#">Coupon Discount <span> TK {{ session()->get('coupon')['discount_amount'] }} </span></a></li>
 						<li><a href="#">Grand Total <span> TK {{ session()->get('coupon')['total_amount'] }}</span></a></li>
+						<span hidden name="grand_total_save" id="grand_total_save">TK {{ $cartTotal }}</span>
 						@else
 						<li><a href="#">Subtotal <span>TK {{ $cartTotal }}</span></a></li>
-						<li><a href="#">Grand Total <span>TK {{ $cartTotal }}</span></a></li>
+						<li><a href="#">Delivery Charge <span id="delivery-charge">TK 0</span></a></li>
+						<li><a href="#">Grand Total <span id="grand-total">TK {{ $cartTotal }}</span></a></li>
+						<span hidden name="grand_total_save" id="grand_total_save">TK {{ $cartTotal }}</span>
 						@endif
 					</ul>
 					<br>
@@ -163,9 +167,50 @@ My Checkout
 </div>
 </section>
 <!--================End Checkout Area =================-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+	console.log("Hello");
+    $('#deli').on('change', function() {
+        $test = $(this).val();
+
+		
+		console.log($test);
+        $.ajax({
+            url: "{{ url('/delivery-charge/') }}/"+$test,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+
+				// Get the value of the grand total element
+				var grandTotalElem = document.getElementById("grand_total_save");
+				var grandTotalStr = grandTotalElem.innerText;
+
+				// Remove non-numeric characters and parse as integer
+				var grandTotalInt = parseInt(grandTotalStr.replace(/[^0-9.-]+/g,""));
 
 
-<script type="text/javascript">
+                var deliveryCharge = data.delivery_charge;
+                var cartTotal = parseInt({{ $cartTotal }});
+                var grandTotal = deliveryCharge + grandTotalInt;
+
+				console.log(grandTotalInt);
+                $('#delivery-charge').html('TK ' + deliveryCharge);
+                $('#grand-total').html('TK ' + grandTotal);
+				console.log(grandTotal);
+            },
+            error: function(xhr) {
+                // console.log(xhr.responseText);
+					console.log('deliveryCharge');
+            }
+        });
+    });
+});
+</script>
+
+
+{{-- <script type="text/javascript">
 	$(document).ready(function() {
 	  $('.division_id').on('change', function(){
 		  var division_id = $(this).val();
@@ -212,7 +257,7 @@ $('select[name="district_id"]').on('change', function(){
 	  });
 
   });
-  </script>
+  </script> --}}
 
 <script>
 	function myFunction() {

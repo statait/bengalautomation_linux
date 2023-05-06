@@ -525,12 +525,14 @@ Route::prefix('product')->group(function(){
 
     Route::get('/district-get/ajax/{division_id}', [CheckoutController::class, 'DistrictGetAjax']);
 
+    // Delivery Charge
+    Route::get('/delivery-charge/{division_id}', [CartController::class, 'GetDeliveryCharge'])->name('delivery-charge');
+
     Route::get('/state-get/ajax/{district_id}', [CheckoutController::class, 'StateGetAjax']);
 
     Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
 
 
-    // 
 
 
     // Frontend User Profile

@@ -211,12 +211,13 @@ class CartController extends Controller
         $divisions = ShipDivision::orderBy('division_name','ASC')->get();
         $districts = ShipDistrict::orderBy('district_name','ASC')->get();
         $states = ShipState::orderBy('state_name','ASC')->get();
+
         return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal','divisions','districts','states'));
 
             }else{
 
             $notification = array(
-            'message' => 'Shopping At list One Product',
+            'message' => 'Shop at least one Item',
             'alert-type' => 'error'
         );
 
@@ -237,6 +238,13 @@ class CartController extends Controller
         }
 
     } // end method 
+
+    public function GetDeliveryCharge($division_id)
+    {
+    $divition = ShipDivision::find($division_id);
+
+    return json_encode($divition);
+    }
 
 
     }

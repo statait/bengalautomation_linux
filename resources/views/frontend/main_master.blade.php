@@ -20,9 +20,9 @@ $seo = App\Models\Seo::find(1);
 <link rel="icon"  href="{{ asset('frontend/assets/img/fav.png') }}">
 
 <!-- /// Google Analytics Code // -->
-<script>
+{{-- <script>
     {{ $seo->google_analytics }}
-</script>
+</script> --}}
 <!-- /// Google Analytics Code // -->
 
 
@@ -201,11 +201,11 @@ rel="stylesheet">
 <script src="{{ asset('frontend/assets/js/jquery.nice-select.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/jquery.sticky.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/nouislider.min.js') }}"></script>
-<script src="{{ asset('frontend/assets/js/countdown.js') }}"></script>
+{{-- <script src="{{ asset('frontend/assets/js/countdown.js') }}"></script> --}}
 <script src="{{ asset('frontend/assets/js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/owl.carousel.min.js') }}"></script>
 <!--gmaps Js-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script> --}}
 {{-- <script src="{{ asset('frontend/assets/js/gmaps.min.js') }}"></script> --}}
 <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 <!-- For demo purposes – can be removed on production : End --> 

@@ -30,7 +30,9 @@ class CheckoutController extends Controller
         //  dd($request->all());
 
 		$request->validate([ 'division_id' => 'required', 'district_id' => 'required','notes' => 'required'], [ 'division_id.required' => 'Please select a division.', 'district_id.required' => 'Please select a district.','notes.required' => 'Please enter your address.']);	
-		
+
+		$cartTotal = Cart::total();
+
         $data = array();
     	$data['shipping_name'] = $request->shipping_name;
     	$data['shipping_email'] = $request->shipping_email;
@@ -39,22 +41,35 @@ class CheckoutController extends Controller
     	$data['division_id'] = $request->division_id;
     	$data['district_id'] = $request->district_id;
     	$data['state_id'] = $request->state_id;
+		// $data['state_id'] = $grandTotal;
     	$data['notes'] = $request->notes;
+
 		// $data['coupon'] = $request->;
-		$cartTotal = Cart::total();
+		if(	$data['division_id'] == 7){
+			 $grandTotalStr = Cart::total();
+			 $cartTotal = (float) str_replace(',', '', $grandTotalStr);
+			//  preg_replace('/[^0-9]/', '', $grandTotalStr);
+			// $cartTotal = floor(intval(preg_replace('/[^0-9]/', '', Cart::total()), 10));
+			$delivery = 70;
+			$grandTotal =  $cartTotal + 70;
+		}else{
+			$grandTotalStr = Cart::total();
+			$cartTotal = (float) str_replace(',', '', $grandTotalStr);
+			$delivery = 120;
+			$grandTotal =  $cartTotal + 120;
+		}
+
+		
+		
 		// $total = (int)str_replace(',','',Cart::total());
 		// $total_amount = round($total - $total * $coupon->coupon_discount/100);
 
-		
-
-
-
     	if ($request->payment_method == 'cod') {
-    		return view('frontend.payment.cash',compact('data','cartTotal'));
+    		return view('frontend.payment.cash',compact('data','cartTotal','grandTotal','delivery'));
     	}elseif ($request->payment_method == 'pos') {
-    		return view('frontend.payment.cash',compact('data','cartTotal'));
+    		return view('frontend.payment.cash',compact('data','cartTotal','grandTotal','delivery'));
     	}else{
-			return view('frontend.payment.cash',compact('data','cartTotal'));
+			return view('frontend.payment.cash',compact('data','cartTotal','grandTotal','delivery'));
     	}
 
 

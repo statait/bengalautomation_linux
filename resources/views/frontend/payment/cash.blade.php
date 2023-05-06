@@ -39,7 +39,8 @@ Payment
 						<li><a href="#">Grand Total <span> TK {{ session()->get('coupon')['total_amount'] }}</span></a></li>
 						@else
 						<li><a href="#">Subtotal <span>TK {{ $cartTotal }}</span></a></li>
-						<li><a href="#">Grand Total <span>TK {{ $cartTotal }}</span></a></li>
+						<li><a href="#">Delivery <span>TK {{ $delivery }}</span></a></li>
+						<li><a href="#">Grand Total <span>TK {{$grandTotal}}</span></a></li>
 						@endif
 					</ul>
 					<br>
@@ -58,6 +59,8 @@ Payment
 					  <input type="hidden" name="district_id" value="{{ $data['district_id'] }}">
 					  <input type="hidden" name="state_id" value="{{ $data['state_id'] }}">
 					  <input type="hidden" name="notes" value="{{ $data['notes'] }}"> 
+					  <input type="hidden" name="grandTotal" value="{{ $grandTotal }}"> 
+					  {{-- <input type="hidden" name="notes" value="{{ $data['notes'] }}">  --}}
 				
 							</label>
 
