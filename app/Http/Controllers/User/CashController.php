@@ -56,7 +56,7 @@ class CashController extends Controller
      	'user_id' => Auth::id(),
      	'division_id' => $request->division_id,
      	'district_id' => $request->district_id,
-     	'state_id' => $request->grandTotal,
+     	'state_id' => $request->delivery,
      	'name' => $request->name,
      	'email' => $request->email,
      	'phone' => $request->phone,

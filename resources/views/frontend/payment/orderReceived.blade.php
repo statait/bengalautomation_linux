@@ -95,6 +95,18 @@ Confirmation
 						</tr>
 						<tr>
 							<td>
+								<h4>Delivery Charge</h4>
+							</td>
+							<td>
+								<h5></h5>
+							</td>
+							<td>
+								{{-- {{ $order->amount + $order->coupon_discount}} --}}
+								<p>{{$order->currency}}  {{ $order->state_id }}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
 								<h4>Coupon</h4>
 							</td>
 							<td>

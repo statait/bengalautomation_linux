@@ -60,7 +60,7 @@ Payment
 					  <input type="hidden" name="state_id" value="{{ $data['state_id'] }}">
 					  <input type="hidden" name="notes" value="{{ $data['notes'] }}"> 
 					  <input type="hidden" name="grandTotal" value="{{ $grandTotal }}"> 
-					  {{-- <input type="hidden" name="notes" value="{{ $data['notes'] }}">  --}}
+					  <input type="hidden" name="delivery" value="{{ $delivery }}"> 
 				
 							</label>
 

@@ -153,9 +153,15 @@
         <td align="right" >
          
           <hr>  
+          @if ($order->coupon == "No Coupon")
+            
+          @else
           <h3><span style="color: #ff7c00;">Coupon: </span> <span style="font-size: 12px">{{ $order->coupon }}</span></h3>
           <h3><span style="color: #ff7c00;">Discount Amount ({{ $order->coupon_percentage }}%): </span> <span style="font-size: 12px"> {{ $order->coupon_discount }}</span></h3>
-          <h3><span style="color: #ff7c00;">Subtotal: </span> <span style="font-size: 12px"> TK {{ $order->amount }}</span></h3>
+          @endif
+
+          <h3><span style="color: #ff7c00;">Subtotal: </span> <span style="font-size: 12px"> TK {{ $order->amount - $order->state_id}}</span></h3>
+          <h3><span style="color: #ff7c00;">Delivery Charge: </span> <span style="font-size: 12px"> TK {{ $order->state_id }}</span></h3>
 
             <h3><span style="color: #ff7c00;">Total:</span> <span style="font-size: 12px"> TK {{ $order->amount }}</span></h3>
             {{-- <h2><span style="color: green;">Full Payment PAID</h2> --}}
