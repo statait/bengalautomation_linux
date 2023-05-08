@@ -62,7 +62,7 @@
             <pre class="font" >
               Bengal Automation
                Email:info@bengalautomation.com <br>
-               Mob: 88 09678200509 
+               Mob: 01603815703 
             </pre>
         </td>
     </tr>
@@ -156,8 +156,8 @@
           @if ($sale->discount_flat == NULL && $sale->discount_percentage == NULL)
             
           @elseif ($sale->discount_flat == NULL)
-          <h3><span style="color: #ff7c00;">Discount Amount ({{ $sale->discount_percentage }}%): </span> <span style="font-size: 12px"> {{ $sale->grand_total * (($sale->discount_percentage)/100)}}</span></h3>
-          @elseif ($sale->discount_flat == NULL)
+          <h3><span style="color: #ff7c00;">Discount Amount ({{ $sale->discount_percentage }}%): </span> <span style="font-size: 12px"> {{ $sale->sub_total * (($sale->discount_percentage)/100)}}</span></h3>
+          @elseif ($sale->discount_percentage == NULL)
           <h3><span style="color: #ff7c00;">Discount Amount (TK): </span> <span style="font-size: 12px"> {{ $sale->discount_flat }}</span></h3>
           @endif
           <h3><span style="color: #ff7c00;">Subtotal: </span> <span style="font-size: 12px"> TK {{ $sale->sub_total}}</span></h3>

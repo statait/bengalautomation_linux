@@ -62,7 +62,7 @@
             <pre class="font" >
               Bengal Automation
                Email:info@bengalautomation.com <br>
-               Mob: 88 09678200509 
+               Mob:  01603815703 
             </pre>
         </td>
     </tr>
