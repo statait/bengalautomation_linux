@@ -153,6 +153,7 @@
         <td align="right" >
          
           <hr>  
+          <p style="float: left"> * 7 Days Money Back Guarantee (T & C Applied)</p>
           @if ($order->coupon == "No Coupon")
             
           @else
