@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admincontroller;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Backend\BrandController;
@@ -194,6 +195,32 @@ Route::prefix('slider')->group(function(){
         Route::get('store/delete/{id}', [LocationController::class, 'LocationDelete'])->name('store.location.delete');
         
         });
+
+        // SALE
+        Route::prefix('sale')->group(function(){
+
+            Route::get('/view', [SaleController::class, 'SaleForm'])->name('sale.form');
+
+            Route::post('/store', [SaleController::class, 'SaleStore'])->name('sale.store');
+            
+            Route::get('/manage', [SaleController::class, 'ManageSale'])->name('manage.sale');
+
+            Route::get('/invoice/download/{sale_id}', [SaleController::class, 'SaleInvoiceDownload'])->name('sale.invoice.download');
+
+            Route::get('/delete/{id}', [SaleController::class, 'SaleDelete'])->name('sale.invoice.delete');
+
+            // Route::post('/store', [LocationController::class, 'LocationStore'])->name('store.location.store');
+            
+            // Route::get('store/edit/{id}', [LocationController::class, 'LocationEdit'])->name('store.location.edit');
+            
+            // Route::post('store/update', [LocationController::class, 'LocationUpdate'])->name('store.location.update');
+    
+            // Route::get('store/delete/{id}', [LocationController::class, 'LocationDelete'])->name('store.location.delete');
+            
+            });
+
+            Route::get('/get-price', [SaleController::class, 'getProductPrice']);
+        // END SALE
 
     // Admin Products All Routes 
 

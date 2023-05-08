@@ -108,7 +108,26 @@
           </ul>
         </li> 
     @else
-    @endif		  
+    @endif		 
+    
+    
+    @if($product == true)
+    <li class="treeview {{ ($prefix == '/sale')?'active':'' }}  ">
+      <a href="#">
+        <i data-feather="file"></i>
+        <span>Sale</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-right pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li class="{{ ($route == 'sale.form')? 'active':'' }}"><a href="{{ route('sale.form') }}"><i class="ti-more"></i>Add Sale</a></li>
+        <li class="{{ ($route == 'manage.sale')? 'active':'' }}"><a href="{{ route('manage.sale') }}"><i class="ti-more"></i>Manage Sale</a></li>
+         
+      </ul>
+    </li> 
+@else
+@endif	
 
 
 
